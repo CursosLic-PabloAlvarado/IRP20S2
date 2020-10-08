@@ -67,26 +67,24 @@ plt.legend();
 
 ## This will create several models varying the number of hidden la
 
-def create_custom_model(input_dim, output_dim, nodes, n=1, name='model'):
-    def create_model():
-        # Create model
-        model = Sequential(name=name)
-        for i in range(n):
-            model.add(Dense(nodes, input_dim=input_dim, activation='relu'))
-        model.add(Dense(output_dim, activation='softmax'))
+def create_custom_model(input_dim, output_dim, nodes, num_hidden_layers=1, name='model'):
+    # Create model
+    model = Sequential(name=name)
+    for i in range(num_hidden_layers):
+        model.add(Dense(nodes, input_dim=input_dim, activation='relu'))
+    model.add(Dense(output_dim, activation='softmax'))
 
-        # Compile model
-        model.compile(loss='categorical_crossentropy', 
-                      optimizer='adam', 
-                      metrics=['accuracy'])
-        return model
-    return create_model
+    # Compile model
+    model.compile(loss='categorical_crossentropy', 
+                  optimizer='adam', 
+                  metrics=['accuracy'])
+    return model
 
 models = [create_custom_model(n_features, n_classes, 8, i, 'model_{}'.format(i)) 
           for i in range(1, 4)]
 
 for create_model in models:
-  create_model().summary()
+  create_model.summary()
 
   
 ## Train all three models
@@ -96,8 +94,7 @@ history_dict = {}
 cb = TensorBoard()
 
 ## 
-for create_model in models:
-    model = create_model()
+for model in models:
     print('Model name:', model.name)
     history_callback = model.fit(X_train, Y_train,
                                  batch_size=5,
