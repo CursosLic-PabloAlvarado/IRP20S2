@@ -31,6 +31,8 @@
 ##      numSamples x numClasses
 function [X,Y]=create_data(numSamples,numClasses=3,shape="radial")
 
+  pkg load statistics;
+  
   switch(shape)
     case "radial"
       [X,Y]=create_radial(numSamples,numClasses);

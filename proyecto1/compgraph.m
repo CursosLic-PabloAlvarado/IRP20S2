@@ -41,5 +41,5 @@ l1a.backward(l1b.gradient);
 l1a.gradientW
 l1a.gradientX
 
-W1 = W1 + alpha*l1a.gradientW;
-W2 = W2 + alpha*l2a.gradientW;
+W1 = W1 - alpha*l1a.gradientW;
+W2 = W2 - alpha*l2a.gradientW;

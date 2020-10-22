@@ -12,7 +12,7 @@ $ git remote -v
 Usted puede entonces agregar un nuevo repositorio remoto
 "upstream" contra el cual usted puede realizar actualizaciones:
 
-$ git remove add upstream https://github.com/CursosLic-PabloAlvarado/IRP20S2.git
+$ git remote add upstream https://github.com/CursosLic-PabloAlvarado/IRP20S2.git
 
 Por supuesto usted puede nombrar "upstream" como lo desee.  Ese es el
 nombre que por convención se usa como enlace para el origen al que se
